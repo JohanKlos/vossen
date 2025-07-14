@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <!-- Required meta tags -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="vossen.ico">
+    <style>
+        input, td {
+          height: 50px;
+          text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <table id="table">
+      <tbody><tr><th>
+        </th><td align="center">A</td>
+        <td align="center">B</td>
+        <td align="center">C</td>
+        <td align="center">D</td>
+      
+      </tr><tr>
+        <td align="center">1</td>
+        <td align="center" style="background: yellow"><input type="number" id="A1" value=""></td>
+        <td align="center" style="background: yellow"><input type="number" id="B1"></td>
+        <td align="center" style="background: yellow"><input type="number" id="C1"></td>
+        <td align="center" style="background: yellow"><input type="number" id="D1"></td>
+      </tr>
+      <tr>
+        <td align="center">2</td>
+        <td align="center" style="background: blue"><input type="number" id="A2" value=""></td>
+        <td align="center" style="background: blue"><input type="number" id="B2"></td>
+        <td align="center" style="background: blue"><input type="number" id="C2"></td>
+        <td align="center" style="background: blue"><input type="number" id="D2"></td>
+      </tr>
+      <tr>
+        <td align="center">3</td>
+        <td align="center" style="background: green"><input type="number" id="A3" value=""></td>
+        <td align="center" style="background: green"><input type="number" id="B3"></td>
+        <td align="center" style="background: green"><input type="number" id="C3"></td>
+        <td align="center" style="background: green"><input type="number" id="D3"></td>
+      </tr>
+      <tr>
+        <td align="center">4</td>
+        <td align="center" style="background: orange"><input type="number" id="A4" value=""></td>
+        <td align="center" style="background: orange"><input type="number" id="B4"></td>
+        <td align="center" style="background: orange"><input type="number" id="C4"></td>
+        <td align="center" style="background: orange"><input type="number" id="D4"></td>
+      </tr>
+      <tr>
+        <td align="center">5</td>
+        <td align="center" style="background: black"><input type="number" id="A5" value=""></td>
+        <td align="center" style="background: black"><input type="number" id="B5"></td>
+        <td align="center" style="background: black"><input type="number" id="C5"></td>
+        <td align="center" style="background: black"><input type="number" id="D5"></td>
+      </tr>
+      <tr>
+        <td align="center">Vossen</td>
+        <td align="center" style="background: red"><input type="number" id="AV" value=""></td>
+        <td align="center" style="background: red"><input type="number" id="BV"></td>
+        <td align="center" style="background: red"><input type="number" id="CV"></td>
+        <td align="center" style="background: red"><input type="number" id="DV"></td>
+      </tr>
+      <tr>
+        <td align="center">Î£</td>
+        <td align="center" id="AT"></td>
+        <td align="center" id="BT"></td>
+        <td align="center" id="CT"></td>
+        <td align="center" id="DT"></td>
+      </tr>
+    </tbody></table>
+    
+    <script>
+        function inputEventHandler(e) {
+          var letter = e.target.id.substring(0,1);
+          var totaal = berekentotaal(letter);
+          var element = document.getElementById(letter + "T");
+          element.innerHTML = totaal;
+          console.log("ingevuld: " + e.target.id + " met waarde " + e.target.value + " met als totaal: " + totaal);
+        };
+      
+        function berekentotaal(letter) {
+          var one = parseInt(document.getElementById(letter + "1").value) || 0;
+          var two = parseInt(document.getElementById(letter + "2").value) || 0;
+          var three = parseInt(document.getElementById(letter + "3").value) || 0;
+          var four = parseInt(document.getElementById(letter + "4").value) || 0;
+          var five = parseInt(document.getElementById(letter + "5").value) || 0;
+          var min = Math.min(one, two, three, four, five);
+          var fox = parseInt(document.getElementById(letter + "V").value) || 0;
+          var total = [one, two, three, four, five, min*fox].reduce((a,b) => a+b,0);
+          return total;
+        };
+      
+        document.getElementById("table").addEventListener("input",inputEventHandler);
+      </script>
+  
+</body></html>
